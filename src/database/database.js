@@ -20,6 +20,6 @@ const db = ref(getDatabase());
 // const getAllData = async () => {
 //   return await get(db, 'books',)
 // }
-const data = getAllData()
+// const data = getAllData()
 
 export default firebase
