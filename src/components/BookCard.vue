@@ -41,8 +41,6 @@ const showInfo = () => {
   modalState.setModalMode('showBookInfo')
   modalState.setModalInfo(props.book)
   modalState.openModal()
-  console.log('modalState', modalState.modalInfo)
-  console.log('modalState', modalState.modalMode)
 };
 </script>
 

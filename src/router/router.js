@@ -19,15 +19,6 @@ const routes = [
 const router = createRouter({
   history,
   routes,
-  // scrollBehavior(to, from, savedPosition) {
-  //   console.log('scrollBehavior', to);
-  //   if (to.hash) {
-  //     return {
-  //       el: to.hash,
-  //       behavior: 'smooth',
-  //     }
-  //   }
-  // }
 })
 
 export default router

@@ -21,6 +21,5 @@ const getAllData = async () => {
   return await get(db, 'books',)
 }
 const data = getAllData()
-console.log(data.val());
 
 export default firebase
