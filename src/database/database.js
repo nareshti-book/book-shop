@@ -17,9 +17,9 @@ const firebase = initializeApp(firebaseConfig);
 
 const db = ref(getDatabase());
 
-const getAllData = async () => {
-  return await get(db, 'books',)
-}
+// const getAllData = async () => {
+//   return await get(db, 'books',)
+// }
 const data = getAllData()
 
 export default firebase
