@@ -2,7 +2,7 @@
   <div class="modal" :class="{ visible: store.showModal }">
     <div class="modal-content flex-col">
       <span class="close" @click="closeModal">&times;</span>
-      <div v-if="store.modalMode === 'addToCart'">
+      <div v-if="store.modalMode === 'showInfo' || store.modalMode === 'showError'">
         <h1 class="modal-header">{{ store.modalInfo }}</h1>
       </div>
       <div v-if="store.modalMode === 'showBookInfo'" class="flex-col">
@@ -15,23 +15,24 @@
       <ul v-if="store.modalMode === 'cart'" class="custom-cart">
         <h1 :style="{ textAlign: 'center' }" v-if="!bookStore.cart.length">Кошик порожній</h1>
         <li class="book-section" v-for="book in bookStore.cart" :key="book.id">
+          <img :src="book.img" class="book-image" >
           <h4>{{ book.title }}</h4>
           <h4>{{ book.author }}</h4>
           <h4>{{ book.price }} ₪</h4>
           <button
             class="button"
-            :style="{ backgroundColor: 'grey', padding: '0', minWidth: '80px', maxHeight: '25px' }"
+            :style="{ padding: '0', minWidth: '80px', maxHeight: '25px' }"
             @click="deleteFromCart(book.id)"
           >
             Видалити
           </button>
         </li>
-        <form ref="cartForm" v-if="bookStore.cart.length" class="book-section">
+        <form ref="cartForm" v-if="bookStore.cart.length" class="book-section form">
           <div class="form-input">
-            Ім'я: <input name="name" placeholder="Name" v-model="name" />
+            <h4>Ім'я:</h4> <input name="name" placeholder="Name" v-model="name" />
           </div>
           <div class="form-input">
-            Телефон: <input name="phone" required placeholder="Phone" v-model="phone" />
+            <h4>Телефон:</h4> <input name="phone" required placeholder="Phone" v-model="phone" />
           </div>
           <input hidden name="from" :value="from" />
           <input name="subject" hidden value="Замовлення книжок" />
@@ -52,7 +53,8 @@
         >
           Замовити
         </button>
-        <button class="button btn-secondary" @click="closeModal">Назад</button>
+        <button class="button" v-if="store.modalMode === 'showInfo'" @click="openCart">До кошика</button>
+        <button class="button" @click="closeModal">Назад</button>
       </div>
     </div>
   </div>
@@ -69,6 +71,12 @@ const store = modalStore();
 
 const cartForm = ref(null);
 
+const openCart = () => {
+  closeModal();
+  store.setModalMode('cart')
+  store.openModal()
+}
+
 const closeModal = () => {
   store.closeModal();
 };
@@ -82,7 +90,7 @@ const addToCart = () => {
   closeModal();
   bookStore.addToCart(book);
 
-  store.setModalMode('addToCart');
+  store.setModalMode('showInfo');
 
   store.setModalInfo(`Книжку "${book.title.toUpperCase()}" додано в кошик`);
   store.openModal();
@@ -96,10 +104,17 @@ const allText = computed(() => {
   return message + list;
 });
 
+const showError = () => {
+  store.setModalMode('showError');
+  store.setModalInfo(`Будь ласка, вкажіть ім'я та номер телефону!`)
+  store.openModal();
+}
+
 const makeOrder = () => {
+  if (!name.value.length || !phone.value.length) return showError()
   sendEmail(cartForm.value);
   closeModal();
-  store.setModalMode('addToCart');
+  store.setModalMode('showInfo');
   store.setModalInfo(
     `Замовлення прийняте.
   Ми зателефонуємо Вам найближчим часом!
@@ -127,9 +142,10 @@ const makeOrder = () => {
 }
 
 .book-section {
+  min-width: 300px;
   display: grid;
   margin: 1rem 0;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   border: 2px solid var(--first-color);
   padding: 1rem;
@@ -156,6 +172,12 @@ const makeOrder = () => {
   padding: 20px;
   border: 1px solid #888;
   max-width: 90%;
+  min-width: 300px;
+}
+
+.book-image {
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .close {
@@ -230,6 +252,7 @@ const makeOrder = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .form-input {

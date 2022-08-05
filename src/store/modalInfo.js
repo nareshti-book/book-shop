@@ -20,8 +20,8 @@ export default {
     },
     openModal() {
       this.showModal = true
-      if (this.modalMode === 'addToCart') {
-        this.autoCloseTimeout = setTimeout(this.closeModal, 2000)
+      if (this.modalMode === ('showError' || 'showInfo')) {
+        this.autoCloseTimeout = setTimeout(this.closeModal, 4000)
       }
     },
     closeModal() {

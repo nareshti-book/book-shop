@@ -73,11 +73,26 @@
 <script setup>
 import { ref } from 'vue';
 import { sendEmail } from '../email/email';
+import { modalStore } from '../store/store';
 
 const email = ref('');
 const subscribe = ref(null);
+const modStore = modalStore();
+
+const showError = () => {
+  modStore.setModalMode('showError');
+  modStore.setModalInfo('Будь ласка, введіть коректну email-адресу!')
+  modStore.openModal();
+  email.value = ''
+};
 
 const subscribeOnNews = () => {
+  if (
+    !email.value ||
+    !email.value.length ||
+    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value) === false
+  )
+    return showError();
   sendEmail(subscribe.value);
   email.value = '';
 };

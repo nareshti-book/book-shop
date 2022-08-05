@@ -31,14 +31,27 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { sendEmail } from '../email/email';
+import { modalStore } from '../store/store';
+const modStore = modalStore();
 
 const message = reactive({
   subject: '',
   from: '',
   text: '',
 });
+
 const form = ref(null);
+
+const showError = (textData) => {
+  modStore.setModalMode('showError');
+  modStore.setModalInfo(`Будь ласка, ${textData}!`)
+  modStore.openModal();
+}
+
+
 const tryToSendEmail = () => {
+  if (!message.from.trim().length || !message.subject.trim().length || !message.text.trim().length) return showError('заповніть всі поля')
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(message.from) === false) return showError('введіть коректну email-адресу')
   sendEmail(form.value);
   message.subject = '';
   message.from = '';

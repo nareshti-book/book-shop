@@ -12,10 +12,10 @@
       {{ props.book.description }}
     </p>
     <div class="btn-c">
-      <button class="button-2" @click="showInfo(props.book.id)">
+      <button class="button" @click="showInfo(props.book.id)">
         <i class="ri-information-line"></i>
       </button>
-      <button class="button-1" @click="addToCart">
+      <button class="button" @click="addToCart">
         <i class="ri-shopping-bag-line"></i>
       </button>
     </div>
@@ -31,7 +31,7 @@ const activeBookId = ref(null);
 const store = booksStore()
 const modalState = modalStore()
 const addToCart = () => {
-  modalState.setModalMode('addToCart')
+  modalState.setModalMode('showInfo')
   store.addToCart(props.book)
 
   modalState.setModalInfo(`Книжку "${props.book.title.toUpperCase()}" додано в кошик`)

@@ -153,7 +153,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,computed } from 'vue';
 
 import { booksStore, sectionsStore } from '../store/store';
 
@@ -164,7 +164,7 @@ import TheModal from './TheModal.vue';
 const bookStore = booksStore();
 const sections = sectionsStore();
 
-const books = bookStore.books;
+const books = computed(() => bookStore.books);
 const stepsSection = sections.stepsSection;
 const aboutSection = sections.aboutSection;
 const questions = sections.questions;

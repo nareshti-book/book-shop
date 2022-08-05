@@ -8,7 +8,7 @@ import Prod7 from '../assets/product7.jpg';
 
 export default {
   state: () => ({
-    books: [
+    allBooks: [
       {
         author: 'Марія Матіос',
         title: 'Солодка Даруся',
@@ -61,7 +61,7 @@ export default {
         author: 'Саллі Руні',
         title: 'Нормальні люди',
         price: 120,
-        description: '111',
+        description: '11s1',
         id: '7',
         img: Prod7,
       },
@@ -69,6 +69,8 @@ export default {
     cart: [],
   }),
   getters: {
+    books: state => state.allBooks.filter(book => !state.cart.some(cartBook => cartBook === book)),
+    // books: (state) => state.allBooks.filter(book => state.cart.some(cartBook => cartBook.id !== book.id)),
     totalCartPrice: (state) => state.cart.reduce((acc, book) => {
       return acc + book.price
     }, 0)
