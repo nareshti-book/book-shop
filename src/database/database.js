@@ -13,13 +13,6 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
-
-
-const db = ref(getDatabase());
-
-// const getAllData = async () => {
-//   return await get(db, 'books',)
-// }
-// const data = getAllData()
+const database = getDatabase()
 
 export default firebase

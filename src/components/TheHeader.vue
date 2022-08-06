@@ -26,8 +26,6 @@
       </div>
 
       <div class="nav__btns">
-        <!-- Theme change button -->
-        <i class="ri-moon-line change-theme" id="theme-button"></i>
 
         <div class="nav__shop" id="cart-shop">
 

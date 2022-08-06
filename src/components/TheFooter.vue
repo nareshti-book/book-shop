@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <p class="footer__copy">&#169; Nareshti_il Всі права не захищено</p>
+    <p class="footer__copy">&#169; Nareshti_il Всі права захищені</p>
   </footer>
 </template>
 

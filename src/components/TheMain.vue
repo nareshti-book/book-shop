@@ -39,7 +39,7 @@
     <!-- ABOUT -->
     <section class="about section container" id="about">
       <div class="about__container grid">
-        <img src="../assets/product1.jpg" alt="" class="about__img" />
+        <img src="../assets/about.jpg" alt="" class="about__img" />
 
         <div class="about__data">
           <h2 class="section__title about__title">{{ aboutSection.header }}</h2>
