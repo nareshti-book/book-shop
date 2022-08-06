@@ -3,7 +3,7 @@
   <TheModal />
     <section class="home">
       <div class="home__container container grid">
-        <img src="../assets/home.jpg" alt="" class="home__img" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/nareshti-il.appspot.com/o/main-images%2Fhome.jpg?alt=media&token=fe929184-bf9e-4a23-865c-69d7cf6bd724" alt="Наші книги" class="home__img" />
         <div class="home__data">
           <h1 class="home__title">
             Нарешті! <br />
@@ -39,7 +39,8 @@
     <!-- ABOUT -->
     <section class="about section container" id="about">
       <div class="about__container grid">
-        <img src="../assets/about.jpg" alt="" class="about__img" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/nareshti-il.appspot.com/o/main-images%2FZSU-donate.jpg?alt=media&token=fbf0b7ed-93aa-4704-a218-76d96bea693f" alt="Слава Україні" class="about__img" />
+
 
         <div class="about__data">
           <h2 class="section__title about__title">{{ aboutSection.header }}</h2>
@@ -180,24 +181,12 @@ const changeActiveQuestion = (id) => {
 </script>
 
 <style scoped>
-/* .book-info {
-  display: none;
-  position: absolute;
-  left: 40px;
-  top: 140px;
-  bottom: 20px;
-  right: 20px;
-  z-index: 5;
-  background-color: white;
-  border-radius: 4px;
-  border: 2px solid red;
-  overflow: hidden;
+.home__data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.product__info:hover + .book-info {
-  display: block
-} */
-
 .btn-container {
   position: relative;
 }

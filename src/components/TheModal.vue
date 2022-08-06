@@ -207,6 +207,11 @@ const makeOrder = () => {
   background: var(--first-color);
 }
 
+.info-description {
+  padding: 1rem;
+  margin-top: 1rem
+}
+
 .flex-col {
   display: flex;
   flex-direction: column;

@@ -3,12 +3,12 @@
     <div class="contact__inputs">
       <div class="contact__content">
         <input type="email" name="from" class="contact__input" v-model="message.from" />
-        <label class="contact__label">Email</label>
+        <label class="contact__label">Ваш Email, щоб ми могли відповісти</label>
       </div>
 
       <div class="contact__content">
         <input type="text" name="subject" class="contact__input" v-model="message.subject" />
-        <label class="contact__label">Тема</label>
+        <label class="contact__label">Тема листа</label>
       </div>
 
       <div class="contact__content contact__area">

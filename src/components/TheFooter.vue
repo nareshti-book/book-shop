@@ -59,9 +59,8 @@
         <h3 class="footer__title">Оплата</h3>
 
         <div class="footer__cards">
-          <img src="../assets/card1.png" alt="" class="footer__card" />
-          <img src="../assets/card2.png" alt="" class="footer__card" />
-          <img src="../assets/card3.png" alt="" class="footer__card" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/nareshti-il.appspot.com/o/main-images%2Fcard1.png?alt=media&token=1cc81000-dbbd-4cf7-be85-b273515a9294" alt="" class="footer__card" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/nareshti-il.appspot.com/o/main-images%2Fcard2.png?alt=media&token=73a15af4-f7d1-434e-af6f-1f62634d538e" alt="" class="footer__card" />
         </div>
       </div>
     </div>
