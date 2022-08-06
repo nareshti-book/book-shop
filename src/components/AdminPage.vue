@@ -1,5 +1,6 @@
 <template>
   <div class="admin">
+    <TheModal />
     <div class="btn-tabs" v-if="mode !== 'create'">
       <button class="button" :class="{ active: mode === 'create' }" @click="clearForm">
         <h4>Add new book</h4>
@@ -76,10 +77,12 @@ import {
 } from 'firebase/database';
 
 import { ref, computed } from 'vue';
-import { booksStore } from '../store/store.js';
+import { booksStore, modalStore } from '../store/store.js';
 
 import { v4 as uuidv4 } from 'uuid';
+import TheModal from './TheModal.vue';
 const bookStore = booksStore();
+const modal = modalStore();
 const allBooks = computed(() => bookStore.allBooks);
 const mode = ref('create');
 const changeMode = (data) => {
@@ -123,6 +126,8 @@ const saveBook = () => {
     img: img.value,
     id: id.value || uuidv4(),
   };
+  if (!title.value.trim().length || !author.value.trim().length || !price.value.trim().length || !img.value) return showError('all');
+  if (isNaN(price.value)) return showError('price')
   if (mode.value === 'create') {
     addNewBook(book);
     return resetData();
@@ -130,6 +135,13 @@ const saveBook = () => {
   saveUpdatedBook(book);
   resetData();
 };
+
+const showError = (type) => {
+  modal.setModalMode('showError')
+  const errorMessage = type === 'all' ? "Будь ласка, заповніть обов'язкові поля: Назва, Автор, Ціна і додайте картинку" : 'Ціна має містити лише числа!'
+  modal.setModalInfo(errorMessage);
+  modal.openModal();
+}
 
 const selectBook = (book) => {
   title.value = book.title;
@@ -175,7 +187,6 @@ const saveUpdatedBook = (book) => {
 
 const deleteImage = (urlData) => {
   const storage = getStorage();
-
   var url_token = urlData.split('?');
   var url = url_token[0].split('/');
   var filePath = url[url.length - 1].replaceAll('%2F', '/');
