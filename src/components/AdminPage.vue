@@ -56,7 +56,6 @@
       </li>
     </ul>
   </div>
-  w
 </template>
 
 <script setup>
