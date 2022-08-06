@@ -6,7 +6,7 @@ export default {
   getters: {
     books: state => state.allBooks.filter(book => !state.cart.some(cartBook => cartBook.id === book.id)),
     totalCartPrice: (state) => state.cart.reduce((acc, book) => {
-      return acc + book.price
+      return +acc + +book.price
     }, 0)
   },
   actions: {
